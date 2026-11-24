@@ -82,12 +82,3 @@ def df_to_np(df, expected_size=30):
     arr = pad_arr(arr, expected_size=expected_size)
     return arr
 
-
-def genome_mapping(genome):
-    genome.sort_values(by=["movieId", "tagId"], inplace=True)
-    movie_genome = genome.groupby("movieId")["relevance"].agg(list).reset_index()
-
-    movie_genome = {a: b for a, b in zip(movie_genome['movieId'], movie_genome['relevance'])}
-
-    return movie_genome
-
